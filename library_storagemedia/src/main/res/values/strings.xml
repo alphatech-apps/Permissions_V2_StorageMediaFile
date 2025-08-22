@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Permissions All</string>
+  <string name="permission_is_blocked">Permission is Blocked. Please allow this permission in App Settings.</string>
+</resources>
