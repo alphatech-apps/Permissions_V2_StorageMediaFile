@@ -99,7 +99,7 @@ public class PermissionsRuntime {
                 dialog.Notshow(REQUEST_CODE_FILESTORAGE, null);
             }
         } else {
-            requestMultiplePermission(context, PermissionsRuntime_helper.MediaStoragePermissions, REQUEST_CODE_MEDIASTORAGE, message, showDialog, image);
+            requestMultiplePermission(context, PermissionsRuntime_helper.MediaStoragePermissions, REQUEST_CODE_FILESTORAGE, message, showDialog, image);
         }
     }
 
