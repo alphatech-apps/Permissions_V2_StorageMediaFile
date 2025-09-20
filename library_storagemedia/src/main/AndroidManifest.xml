@@ -24,4 +24,6 @@
         android:name="android.permission.READ_MEDIA_VIDEO"
         android:minSdkVersion="33" />
 
+    <application android:requestLegacyExternalStorage="true" />
+
 </manifest>
