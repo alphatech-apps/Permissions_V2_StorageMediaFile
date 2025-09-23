@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -31,15 +32,6 @@ public class PermissionsRuntime {
         return ContextCompat.checkSelfPermission(context, permissionName) == PackageManager.PERMISSION_GRANTED;
     }
 
-    // 🔐 Check multiple permissions
-    public static boolean isMultiplePermissionGranted(Context context, String[] permissions) {
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     // 📥 Request single permission using dialog
     public static void requestPermission(Context context, String permission, int requestCode, String message, boolean showDialog, Drawable image) {
@@ -108,13 +100,12 @@ public class PermissionsRuntime {
         if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, permissionName)) {
             BottomSheetDialog dialog;
             View view = activity.getLayoutInflater().inflate(R.layout.bottomsheet_permission_settings, null);
-            dialog = new BottomSheetDialog(activity, R.style.AppBottomSheetDialogTheme); // Style here
+            dialog = new BottomSheetDialog(activity); // Style here
             dialog.setContentView(view);
             dialog.show();
-            if (dialog.getWindow() != null) {
-                dialog.getWindow().setNavigationBarColor(ContextCompat.getColor(activity, R.color.DayLight_NightDark)); //✅ NavigationBar color fix
-            }
-//                TextView allow_settings = dialog.findViewById(R.id.allow_settings);
+            if (dialog.getWindow() != null)
+                dialog.getWindow().setNavigationBarColor(Color.TRANSPARENT); //✅ NavigationBar color fix
+
             Button allow_settings = dialog.findViewById(R.id.allow_settings_btn);
             allow_settings.setOnClickListener(view1 -> {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -139,13 +130,12 @@ public class PermissionsRuntime {
         if (rtnl) {
             BottomSheetDialog dialog;
             View view = activity.getLayoutInflater().inflate(R.layout.bottomsheet_permission_settings, null);
-            dialog = new BottomSheetDialog(activity, R.style.AppBottomSheetDialogTheme); // Style here
+            dialog = new BottomSheetDialog(activity); // Style here
             dialog.setContentView(view);
             dialog.show();
-            if (dialog.getWindow() != null) {
-                dialog.getWindow().setNavigationBarColor(ContextCompat.getColor(activity, R.color.DayLight_NightDark)); //✅ NavigationBar color fix
-            }
-//            TextView allow_settings = dialog.findViewById(R.id.allow_settings);
+            if (dialog.getWindow() != null)
+                dialog.getWindow().setNavigationBarColor(Color.TRANSPARENT); //✅ NavigationBar color fix
+
             Button allow_settings = dialog.findViewById(R.id.allow_settings_btn);
             allow_settings.setOnClickListener(view1 -> {
                 dialog.dismiss();

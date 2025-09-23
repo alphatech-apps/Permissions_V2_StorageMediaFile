@@ -5,14 +5,15 @@ import static com.jakir.permissions.PermissionsRuntime.checkRationale_RequestPer
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -36,13 +37,12 @@ public class Bottomsheet_dialog_Single {
 
     public void show(String permissionName, int allow_code, String message, Drawable permissionImage) {
         BottomSheetDialog dialog;
-        View view = ((Activity) context).getLayoutInflater().inflate(R.layout.permission_bottomsheet_layout, null);
-        dialog = new BottomSheetDialog(context, R.style.AppBottomSheetDialogTheme); // Style here
+        View view = LayoutInflater.from(context).inflate(R.layout.permission_bottomsheet_layout, null);
+        dialog = new BottomSheetDialog(context); // Style here
         dialog.setContentView(view);
         dialog.show();
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setNavigationBarColor(ContextCompat.getColor(context, R.color.DayLight_NightDark)); //✅ NavigationBar color fix
-        }
+        if (dialog.getWindow() != null)
+            dialog.getWindow().setNavigationBarColor(Color.TRANSPARENT); //✅ NavigationBar color fix
 
         String pDisplayName = PermissionsRuntime_helper.getPermissionName(permissionName);
 

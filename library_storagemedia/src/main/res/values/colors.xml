@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="DayBlack_NightWhite">#000000</color>
-    <color name="DayWhite_NightBlack">#FFFFFF</color>
-    <color name="red">#F31200</color>
-    <color name="DayLight_NightDark">#FFFFFF</color>
-</resources>

@@ -5,7 +5,9 @@ import static com.jakir.permissions.PermissionsRuntime.checkRationale_RequestMul
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,13 +41,13 @@ public class Bottomsheet_dialog_Multiple {
 
     public void show(String[] permissionName, int allow_code, String message, Drawable permissionImage) {
         BottomSheetDialog dialog;
-        View view = ((Activity) context).getLayoutInflater().inflate(R.layout.permission_bottomsheet_layout, null);
-        dialog = new BottomSheetDialog(context, R.style.AppBottomSheetDialogTheme); // Style here
+        View view = LayoutInflater.from(context).inflate(R.layout.permission_bottomsheet_layout, null);
+        dialog = new BottomSheetDialog(context); // Style here
         dialog.setContentView(view);
         dialog.show();
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setNavigationBarColor(ContextCompat.getColor(context, R.color.DayLight_NightDark)); //✅ NavigationBar color fix
-        }
+        if (dialog.getWindow() != null)
+            dialog.getWindow().setNavigationBarColor(Color.TRANSPARENT); //✅ NavigationBar color fix
+
 
         pDisplayName = (permissionName.length == 2 && "Storage".equals(PermissionsRuntime_helper.getPermissionName(permissionName[0])) && "Storage".equals(PermissionsRuntime_helper.getPermissionName(permissionName[1]))) ? "Storage" : pDisplayName;
         pDisplayName = (permissionName.length == 3 && "Music & Audio".equals(PermissionsRuntime_helper.getPermissionName(permissionName[0])) && "Photos & Videos".equals(PermissionsRuntime_helper.getPermissionName(permissionName[1])) && "Photos & Videos".equals(PermissionsRuntime_helper.getPermissionName(permissionName[2]))) ? "Media Storage" : pDisplayName;
