@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class PermissionsRuntime_helper {
     // 🔢 All request codes
-    public static final int REQUEST_CODE_MEDIASTORAGE_AUDIO = 1010101010, REQUEST_CODE_MEDIASTORAGE_IMAGE = 10101010,  REQUEST_CODE_MEDIASTORAGE = 8888, REQUEST_CODE_FILESTORAGE = 1111013;
+    public static final int REQUEST_CODE_MEDIASTORAGE_AUDIO = 1010101010, REQUEST_CODE_MEDIASTORAGE_IMAGE = 10101010,  REQUEST_CODE_MEDIASTORAGE = 8888, REQUEST_CODE_FILESTORAGE = 1111013, REQUEST_CODE_APPDETAILS = 101101110;
 
 
     private static final HashMap<String, String> permissionNameMap = new HashMap<>();

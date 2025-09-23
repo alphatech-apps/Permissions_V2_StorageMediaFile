@@ -1,6 +1,7 @@
 package com.jakir.permissions;
 
 
+import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_APPDETAILS;
 import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_FILESTORAGE;
 import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_MEDIASTORAGE;
 
@@ -108,10 +109,8 @@ public class PermissionsRuntime {
 
             Button allow_settings = dialog.findViewById(R.id.allow_settings_btn);
             allow_settings.setOnClickListener(view1 -> {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
-                intent.setData(uri);
-                activity.startActivity(intent);
+                dialog.dismiss();
+                goAppDetailsActivity(activity);
             });
             ActivityCompat.requestPermissions(activity, new String[]{permissionName}, allow_code);
         } else {
@@ -139,13 +138,15 @@ public class PermissionsRuntime {
             Button allow_settings = dialog.findViewById(R.id.allow_settings_btn);
             allow_settings.setOnClickListener(view1 -> {
                 dialog.dismiss();
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
-                intent.setData(uri);
-                activity.startActivity(intent);
+                goAppDetailsActivity(activity);
             });
         }
         ActivityCompat.requestPermissions(activity, permissions, allow_code);
     }
-
+    private static void goAppDetailsActivity(Activity activity) {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
+        intent.setData(uri);
+        activity.startActivityIfNeeded(intent, REQUEST_CODE_APPDETAILS);
+    }
 }

@@ -1,5 +1,6 @@
 package com.jakir.permissions_v2_storagemediafile;
 
+import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_APPDETAILS;
 import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_FILESTORAGE;
 import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_MEDIASTORAGE;
 import static com.jakir.permissions.PermissionsRuntime_helper.REQUEST_CODE_MEDIASTORAGE_AUDIO;
@@ -122,8 +123,43 @@ public class RuntimePermissionsActivity extends AppCompatActivity {
                 Toast.makeText(this, fileStorage ? "✅ File storage access granted!" : "❌ File storage access not granted", Toast.LENGTH_SHORT).show();
                 break;
             }
-
+            case REQUEST_CODE_APPDETAILS:{
+                setSwitchToggle(sw_mediastorage_audio_allow, sw_mediastorage_image_allow, sw_mediastorage_allow, sw_filestorage_allow);
+            }
         }
 
     }
+    /*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_FILESTORAGE) {
+            // Delay a bit because permission screen doesn't return result directly
+            new Handler().postDelayed(() -> {
+                if (PermissionsRuntime.checkFileStoragePermission(this)) {
+                    // Permission granted
+                    Toast.makeText(this, "File Access granted", Toast.LENGTH_SHORT).show();
+                    goMainDirectoryActivity();
+                } else {
+                    // Permission denied
+                    showDialogForAgain(this);
+                }
+
+            }, 500); // 0.5 second delay
+        }
+    }
+
+    private void showDialogForAgain(Context context) {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+        builder.setTitle("File permission is required");
+        builder.setMessage("Please allow file access permission to continue.");
+        builder.setPositiveButton("Try again", (dialog, which) -> {
+            checkPermissionthenGo();
+        });
+        builder.setNegativeButton("Exit", (dialog, which) -> ((Activity) context).finishAffinity());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }*/
+
 }
